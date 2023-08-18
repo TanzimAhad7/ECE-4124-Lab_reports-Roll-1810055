@@ -1,0 +1,204 @@
+
+
+**Experiment Date:** March 20,2023
+
+**Experiment No:** 01
+
+**Name of the Experiment:**
+
+1.  Plot unit step, unit ramp, unit impulse signal using MATLAB.
+
+2.  Plot discrete signal using MATLAB.
+
+3.  Plot two different discrete signal and show their addition and
+    subtraction using MATLAB.
+
+4.  Plot two different continuous signal using MATALB.
+
+**Theory:**
+
+**Continuous Signal:**
+
+Continuous refers to a variable that can take on any value within a
+range or interval. In other words, the variable can be measured at any
+point in time and is not limited to specific values. A common example of
+a continuous variable is time.
+
+Discrete refers to a variable that can only take on specific values
+within a range or interval. In other words, the variable is limited to
+certain values and cannot be measured at any point in time. A common
+example of a discrete variable is the number of people in a room.
+**Unit Step:**
+
+A unit step function is a function that is zero for negative values and
+one for non-negative values. It is commonly used in signal processing to
+represent a sudden change in a system.
+
+Mathematical Definition: u(t) = {0, t \< 0; 1, t \>= 0}
+
+
+A unit ramp function is a function that increases linearly with time. It
+is commonly used in signal processing to represent a gradual change in a
+system. Mathematical Definition: r(t) = {0, t \< 0; t, t \>= 0}
+
+
+A unit impulse function is a function that is zero for all values except
+at t=0 where it is infinite. It is commonly used in signal processing to
+represent an instantaneous change in a system. Mathematical Definition:
+d(t) = {0, t! = 0; infinity, t = 0}
+
+**Code:**
+
+**Code for plotting unit step, unit ramp, unit impulse signal:**
+
+```
+clc 
+clear all 
+close all 
+t = -10:0.01:10 
+step = t>=0 
+subplot(3,1,1); 
+plot(t,step); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('unit step'); 
+ramp = t.*step 
+subplot(3,1,2); 
+plot(t,ramp); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('unit ramp'); 
+impulse = t==0 
+subplot(3,1,3); 
+plot(t,impulse); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('unit impulse');
+```
+
+**Output:**
+
+![](lab1_images/image7.jpg)
+
+> **Fig:** Output for plotting unit step, unit ramp, unit impulse signal
+
+**Code for plotting discrete signal:**
+```
+x = -4:3 
+y = [1,2,3,3,2,1,4,1] 
+tem(x,y);
+```
+**Output:**
+
+> ![](lab1_images/image8.jpg)
+
+**Fig:** Output for plotting discrete signal:
+
+**Code for plotting two different discrete signal and show their
+addition and subtraction:**
+
+```
+clear all 
+close all 
+t = -10:2:20 
+n1 = t>=0 & t<=10 subplot(4,1,1); 
+stem(t,n1); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('1st Signal'); 
+n2 = t>=5 & t<=15 subplot(4,1,2); 
+stem(t,n2); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('2nd Signal'); 
+add = n1+n2 subplot(4,1,3); 
+stem(t,add); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('Addition'); 
+sub = n1-n2 subplot(4,1,4); 
+stem(t,sub); 
+xlabel('time'); 
+ylabel('amplitude'); 
+title('Subtraction');                       |
+```
+
+**Output :**
+
+![](lab1_images/image9.jpg)
+
+**Fig:** Output for plotting two different discrete signal and show
+their addition and subtraction:
+
+**Code for plotting two different continuous signals:**
+```
+clc
+clear all
+close all.
+t = -10:0.01:20
+n1 = t>=0 & t<=7
+n2 = t>=1 & t<=6
+n3 = t>=2 & t<=5
+s1 = n1+n2+2*n3;
+subplot(4,1,1);
+plot(t,s1);
+xlabel('time');
+ylabel('amplitude');
+title('1st signal');
+t1 = -3:0.01:3
+impulse = t1>=0 
+n11 = t1.*impulse
+n22 = t1>=3 & t1<=5
+s2 = n11+n22;
+subplot(4,1,2);
+plot(t1,s2);
+xlabel('time');
+ylabel('amplitude');
+title('2nd signal');
+
+```
+
+**Output:**
+
+![](lab1_images/image10.jpg){width="5.5625in"
+height="2.1875in"}
+
+> **Fig:** Output for plotting two different continuous signals:
+
+**Discussion:**
+
+In this experiment, we have learned about different types of signals
+such as continuous and discrete signals, and their characteristics like
+unit step, unit ramp, and unit impulse. We have also learned how to plot
+these signals using MATLAB. Firstly, we plotted unit step, unit ramp,
+and unit impulse signals. These signals are commonly used in signal
+processing to represent sudden, gradual, and instantaneous changes in a
+system, respectively. We used the mathematical definitions of these
+signals to plot them in MATLAB. The resulting plots showed the expected
+behavior of each signal, where the unit step had a sudden change at t=0,
+the unit ramp had a gradual increase, and the unit impulse had a spike
+at t=0. Next, we plotted a discrete signal. Discrete signals are used to
+represent data that is only available at specific points in time or
+space. We used the stem function in MATLAB to plot the given discrete
+signal, which showed the amplitude values at specific points in time. We
+then plotted two different discrete signals and showed their addition
+and subtraction. We used the logical operators and functions in MATLAB
+to create the required signals and then plotted them using the stem
+function. The resulting plots showed how the signals added and
+subtracted from each other. Finally, we plotted two different continuous
+signals. We used the logical operators and functions to create the
+required signals and then plotted them using the plot function in
+MATLAB. The resulting plots showed the expected behavior of each signal,
+where the first signal had three different linear sections, and the
+second signal had a step change followed by a ramp.
+
+**Conclusion:**
+
+In conclusion, this experiment has taught us the basics of signals and
+their characteristics, as well as how to plot them using MATLAB. We have
+learned how to plot different types of signals such as unit step, unit
+ramp, unit impulse, and discrete and continuous signals. We have also
+learned how to perform simple operations on these signals such as
+addition and subtraction. The practical experience gained from this
+experiment will help us better understand and analyze signals in various
+applications.
