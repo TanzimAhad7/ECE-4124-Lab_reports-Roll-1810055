@@ -1,0 +1,174 @@
+
+**Experiment Date:** May 14 ,2023
+
+**Experiment No:** 04
+
+**Name of the Experiment:**
+
+Name of the Experiment:<br>
+i) Take a continuous square wave signal, make a delay of that signal and do the auto correlation of the two signals. Write a code for that signal using MATLAB. <br>
+ii) Take a discrete square wave signal, make a delay of that signal and do the auto correlation of the two signals. Write a code for that signal using MATLAB. <br>
+iii) Write a code for calculating z-transform of a signal using MATLAB.
+
+**Theory:**
+
+Correlation refers to the measurement of similarity between two
+functions, signals, or waveforms. There are two types of correlations:
+autocorrelation and cross-correlation. Autocorrelation determines the
+coherence or similarity between a signal and its delayed version,
+essentially measuring how well a signal matches with itself. It is
+useful for identifying repeating patterns in a signal, detecting
+periodicity hidden within noise, or uncovering the fundamental frequency
+implied by its harmonic frequencies.
+
+On the other hand, cross-correlation measures the coherence or
+similarity between two distinct signals or waveforms at different time
+offsets. It reveals the degree of relatedness between one signal and the
+time-shifted version of another. Cross-correlation is commonly employed
+in signal processing to search for a known feature within a longer
+signal by computing a sliding dot product or sliding inner-product.
+
+Continuous-time signals are defined along a continuous range of time and
+are represented by a continuous independent variable. They exhibit
+continuity in both amplitude and time, with values assigned to each
+instant. Examples of continuous-time signals include sine and cosine
+functions.
+
+Discrete signals, on the other hand, are defined at specific time
+instances, with distinct values assigned to each time point. These
+signals are represented as sequences of numbers and have discrete
+amplitudes. Although speech and video signals can be represented in both
+continuous and discrete formats, they often possess identical
+characteristics under certain circumstances.
+
+When analyzing discrete signals and systems, the z-transform plays a
+crucial role. While analog signals are continuous in the time domain,
+modern communication and systems rely on digital processing. To convert
+analog signals to the digital domain, the first step is to sample the
+analog signal at a rate above the Nyquist sampling rate, resulting in a
+discrete sequence of points. These points are then quantized to
+predefined levels and encoded into binary for storage, analysis, or
+transmission purposes.
+
+**Code:**
+
+**Code for autocorrelation of continuous signal:**
+```
+% Code for autocorrelation of continuous signal by delaying a square wave
+ clc
+ clear all
+ close all
+ t = 0:0.001:4;
+ a1 = t>=0 & t<=1;
+ a2 = t>=1.5 & t<=2.5;
+ a = a1-a2;
+ subplot(3, 1, 1);
+ plot(a);
+ title('Square wave signal');
+ d1 = t>=1 & t<=2;
+ d2 = t>=2.5 & t<=3.5;
+ d = d1-d2;
+ subplot(3, 1, 2);
+ plot(d);
+ title('Delay signal');
+ N = -(length(t)-1):(length(t)-1);
+ corr = xcorr(d,a);
+ subplot(3, 1, 3);
+ plot(N,corr);
+ title('Auto correlation signal');
+ % max value calculation
+ maxx = max(corr);
+ F = find(corr == maxx);
+ maximum_value = F-length(t)
+ ```
+
+**Output for autocorrelation of continuous signal:**
+
+> ![](lab4_images/image2.png)
+>
+> ![](lab4_images/image3.png)
+
+**Code for autocorrelation of discrete signal:**
+```
+clc;
+clear all;
+close all;
+
+t = 0:0.1:4;
+a1 = t >= 0 & t <= 1;
+a2 = t >= 1.5 & t <= 2.5;
+a = a1 - a2;
+
+subplot(3, 1, 1);
+stem(a);
+title('Square wave signal');
+
+d1 = t >= 1 & t <= 2;
+d2 = t >= 2.5 & t <= 3.5;
+d = d1 - d2;
+
+subplot(3, 1, 2);
+stem(d);
+title('Delay signal');
+
+N = -(length(t) - 1):(length(t) - 1);
+corr = xcorr(d, a);
+
+subplot(3, 1, 3);
+stem(N, corr);
+title('Auto correlation signal');
+
+% Max value calculation
+maxx = max(corr);
+F = find(corr == maxx);
+maximum_value = F-length(t);
+
+```
+
+**Output for autocorrelation of discrete signal:**
+
+![](lab4_images/image4.png)
+![](lab4_images/imagex.png)
+
+
+**Code for z-transform of a signal:**
+```
+clc;
+clear all;
+close all;
+
+syms n z;
+
+x = 2^n;
+z_transform = ztrans(x);
+
+```
+
+**Output for z-transform of a signal:**
+
+![](lab4_images/image6.png)
+
+**Discussion:**
+
+A MATLAB code was developed to implement the autocorrelation of
+continuous signals and the z-transform. For the autocorrelation code,
+the time variable \'t\' was defined, and conditions were set to create
+the desired continuous square wave signal. The signal was then plotted.
+Similarly, conditions were set to create the delayed version of the
+signal, which was also plotted. The two signals were auto-correlated
+using the \'xcorr\' function, and the resulting autocorrelation signal
+was plotted. The length of the signal was determined, and the maximum
+delay value was calculated. The implementation of the autocorrelation of
+discrete signals followed a similar approach, but the \'stem\' function
+was used instead of \'plot\' to visualize the discrete signal.
+
+For the z-transform code, a symbolic variable \'z\' and an index
+variable \'n\' were declared using the \'syms\' command. A signal of
+interest was defined. Finally, the z-transform of the signal was
+computed using the \'ztrans\' function and displayed.
+
+**Conclusion:**
+
+The code was successfully run, and no mistakes were discovered. We
+learnt about autocorrelation, the z-transform, and how to use MATALB to
+plot the signal from this experiment.
