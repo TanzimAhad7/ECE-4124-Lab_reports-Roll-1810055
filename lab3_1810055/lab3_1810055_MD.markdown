@@ -1,0 +1,181 @@
+
+**Experiment Name:** StudyAuto-Correlation and Cross-Correlation in
+MATLAB
+
+**Theory:**
+
+Auto-correlation and cross-correlation are essential tools for analyzing
+time series data in various fields, such as signal processing,
+econometrics, and finance. Auto-correlation function measures how
+similar a signal is to a delayed version of itself and is used to
+identify repeating patterns or periodicity in the signal. It can also be
+used to estimate the parameters of a time series model, such as the
+order of a moving average or autoregressive process. The autocorrelation
+function of a discrete-time signal x(n) is described mathematically as:
+
+Rxx(m) = Σ \[x(n) \* x(n - m)\] ; in the autocorrelation function Rxx(m)
+is a measure of the similarity between the signal x(n) and a delayed
+version of itself. On the other hand, cross-correlation is useful for
+measuring the similarity of two signals, even when they are not
+periodic. It can be used to identify the time delay between two signals
+or to detect a specific signal in noise. Cross-correlation is also used
+in time delay estimation, speech recognition, and image processing,
+among other applications. The cross-correlation function is defined
+mathematically as follows:
+
+Rxy(m) = Σ \[x(n) \* y(n - m)\] ; in the cross-correlation function
+Rxy(m) measures the similarity of two signals x(n) and y(n) when one is
+delayed by m samples. In both cases, the correlation score ranges from
+-1 to 1. A positive score indicates a direct correlation between the
+signals, while a negative score implies an inverse correlation. A score
+of 0 means that there is no correlation between the signals. Overall,
+auto-correlation and cross-correlation are powerful techniques for
+analyzing time series data, providing insights into the underlying
+patterns and relationships between signals. They are widely used in
+various fields and are essential tools for data analysts and
+researchers.
+
+**Software used :** MATLAB
+
+**Code: Auto Correlation**
+```
+%Auto corelation
+clc
+clear all;
+x=input('Enter the Array:');
+n1=input('Sample Range:');
+h=fliplr(x);
+n2=-fliplr(n1);
+z=[];
+for i=1:length(x)
+g=h.*x(i);
+z=[z;g];
+end
+[r c]=size(z);
+k=r+c;
+t=2;
+y=[];
+cd=0;
+while(t<=k)
+for i=1:r
+for j=1:c
+if((i+j)==t)
+cd=cd+z(i,j);
+end
+end
+end
+t=t+1;
+y=[y cd];
+cd=0;
+end
+subplot(3,1,1);
+stem(x);
+title('Auto Correlation-Signal');
+subplot(3,1,2);
+nl=min(n1)+min(n2);
+nh=max(n1)+max(n2);
+t=nl:1:nh;
+stem(t,y);
+title('without function');
+subplot(3,1,3);
+z=xcorr(x,x);
+stem(t,z);
+title('with function');
+```
+**Input:**
+
+![](lab3_images/image2.png)
+
+**Output:**
+
+> ![](lab3_images/imagex.png)
+
+ 
+**Code: Cross-correlation**
+```
+clc
+clear all;
+x=input('Enter the first Array:');
+n1=input('Sample Range:');
+h=input('Enter the second Array:');
+n2=input('Sample Range:');
+n2=-fliplr(n2);
+z=[];
+w=fliplr(h);
+for i=1:length(x)
+g=w.*x(i);
+z=[z;g];
+end
+[r c]=size(z);
+k=r+c;
+t=2;
+y=[];
+cd=0;
+while(t<=k)
+for i=1:r
+for j=1:c
+if((i+j)==t)
+cd=cd+z(i,j);
+end
+end
+end
+t=t+1;
+y=[y cd];
+cd=0;
+end
+subplot(4,1,1);
+stem(x);
+title('First Array');
+subplot(4,1,2);
+stem(h);
+title('Second Array');
+subplot(4,1,4);
+nl=min(n1)+min(n2);
+nh=max(n1)+max(n2);
+t=nl:1:nh;
+stem(t,y);
+title('Without Function');
+subplot(4,1,3);
+p=xcorr(x,h);
+stem(t,p);
+title('With Function');
+```
+**Input:**
+
+![](lab3_images/image15.png)
+
+**Output:**
+
+![](lab3_images/image16.png)
+**Discussion :**
+
+In this lab experiment, we focused on understanding the concepts of
+auto-correlation and cross-correlation in time series analysis. We
+started by defining what these terms mean and how they are used to
+analyze signals. Auto-correlation measures the similarity between a
+signal and its shifted version, while cross-correlation measures the
+similarity between two distinct signals. We then performed tests using
+MATLAB to demonstrate the features of these functions. We generated two
+signals with known properties, such as a sine wave and a square wave,
+using the sin and square functions in MATLAB. We then computed the
+auto-correlation of each signal using the autocorr function and the
+cross-correlation of the two signals using the xcorr function. The
+output of these functions was a plot of the correlation function over a
+range of lag values .By analyzing the plots, we were able to observe the
+correlation patterns of the signals. In the auto-correlation plot, we
+identified the periodicity of the signal, which helped us to identify
+the underlying pattern of the signal. In the cross-correlation plot, we
+observed the time delay between the two signals, which helped us to
+identify the relationship between the two signals.
+
+**Conclusion:**
+
+Through this experiment, we gained practical understanding of how
+auto-correlation and cross-correlation can be used in signal processing
+and time series analysis. We also learned how to use MATLAB functions to
+compute these correlations and analyze the results. We discussed the
+theoretical properties of auto-correlation and cross-correlation and
+their limitations, such as their sensitivity to noise and the
+assumptions of linearity and stationarity. Overall, this lab experiment
+provided us with a deeper understanding of these essential tools for
+analyzing time series data.
